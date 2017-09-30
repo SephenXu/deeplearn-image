@@ -1,9 +1,6 @@
 FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04
-
-ADD source.list /data/source.list
-RUN mv /data/source.list /etc/apt/sources.list
 # base lib	
-RUN apt-get clean && apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         apt-utils \
         build-essential \
         cmake \
