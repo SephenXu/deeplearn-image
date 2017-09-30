@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn7-runtime-ubuntu16.04
+FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04
 
 ADD source.list /data/source.list
 RUN mv /data/source.list /etc/apt/sources.list
