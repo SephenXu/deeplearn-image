@@ -28,9 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-setuptools \
         python-scipy \
         libavformat-dev \
-        libavcodec-dev \
-        libavfilter-dev \
-        libswscale-dev \
+        libavcodec-dev libavfilter-dev libswscale-dev \
         libjpeg-dev libpng-dev libtiff-dev libjasper-dev zlib1g-dev libopenexr-dev libxine2-dev libeigen3-dev libtbb-dev
 
 ######################################################
@@ -75,10 +73,9 @@ RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
 
 #ADD opencv-3.1.0.zip /data/3.1.0.zip
 # Define working directory.
-WORKDIR /data
+
 RUN cd \
 	&& wget https://github.com/Itseez/opencv/archive/3.1.0.zip \
-	&& mv /data/3.1.0.zip ./ \
 	&& unzip 3.1.0.zip \
 	&& cd opencv-3.1.0 \
 	&& mkdir build \
@@ -97,5 +94,6 @@ RUN bash build_openblas.sh
 
 RUN rm -rf /var/lib/apt/lists/*
 
+WORKDIR /data
 # Define default command.
 CMD ["bash"]
