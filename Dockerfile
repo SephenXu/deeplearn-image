@@ -74,6 +74,8 @@ RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
 # OpenCV 3.1.0
 
 #ADD opencv-3.1.0.zip /data/3.1.0.zip
+# Define working directory.
+WORKDIR /data
 RUN cd \
 	&& wget https://github.com/Itseez/opencv/archive/3.1.0.zip \
 	&& mv /data/3.1.0.zip ./ \
@@ -94,9 +96,6 @@ RUN bash build_openblas.sh
 ######################################################
 
 RUN rm -rf /var/lib/apt/lists/*
-
-# Define working directory.
-WORKDIR /data
 
 # Define default command.
 CMD ["bash"]
